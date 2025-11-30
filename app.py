@@ -10,7 +10,7 @@ import os
 
 # Download SAM weights if not present
 from download_weights import download_weights
-download_weights()
+weights_path = download_weights()
 
 from vrp_sam.models.sam_wrapper import SAMWrapper
 
@@ -30,7 +30,7 @@ st.sidebar.header("Configuration")
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 st.sidebar.write(f"Device: {device}")
 
-sam_checkpoint = st.sidebar.text_input("SAM Checkpoint Path", "weights/sam_vit_h_4b8939.pth")
+sam_checkpoint = st.sidebar.text_input("SAM Checkpoint Path", weights_path)
 vrp_checkpoint = st.sidebar.text_input("VRP Checkpoint Path", "")
 
 @st.cache_resource
