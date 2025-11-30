@@ -1,0 +1,18 @@
+# configs/coco_full_vrp_sam_r50.yaml
+data_root: data/coco2014_full
+sam_weights: weights/sam_vit_h_4b8939.pth
+vrp_encoder: vrp_sam.models.vrp_encoder.VRPEncoder
+sam_wrapper: vrp_sam.models.sam_wrapper.SAMMaskDecoderWrapper
+
+# training
+fold: 0
+prompt: mask          # point | scribble | box | mask
+shots: 1
+epochs: 50
+bsz: 8
+lr: 1.0e-4
+workers: 8
+run_dir: runs/coco_full_fold0
+
+# eval
+eval_bsz: 16
