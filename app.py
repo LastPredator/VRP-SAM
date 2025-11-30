@@ -8,9 +8,9 @@ from PIL import Image
 import tempfile
 import os
 
-# Download SAM weights if not present
-from download_weights import download_sam_weights
-download_sam_weights()
+from download_weights import download_weights
+download_weights()
+
 
 from vrp_sam.models.sam_wrapper import SAMWrapper
 
