@@ -31,7 +31,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 st.sidebar.write(f"Device: {device}")
 
 sam_checkpoint = st.sidebar.text_input("SAM Checkpoint Path", "weights/sam_vit_h_4b8939.pth")
-vrp_checkpoint = st.sidebar.text_input("VRP Checkpoint Path", "runs/experiment_1/checkpoint_epoch_1.pth")
+vrp_checkpoint = st.sidebar.text_input("VRP Checkpoint Path", "")
 
 @st.cache_resource
 def load_model(sam_ckpt, vrp_ckpt):
