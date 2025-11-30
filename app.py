@@ -34,18 +34,15 @@ sam_checkpoint = st.sidebar.text_input("SAM Checkpoint Path", weights_path)
 vrp_checkpoint = st.sidebar.text_input("VRP Checkpoint Path", "")
 
 @st.cache_resource
-def load_model(sam_ckpt, vrp_ckpt):
+def load_model(sam_ckpt):
     model = SAMWrapper(sam_checkpoint=sam_ckpt, model_type="vit_h", freeze_sam=True)
-    if vrp_ckpt and os.path.exists(vrp_ckpt):
-        checkpoint = torch.load(vrp_ckpt, map_location='cpu')
-        model.load_state_dict(checkpoint['model_state_dict'], strict=False)
     model.to(device)
     model.eval()
     return model
 
 if os.path.exists(sam_checkpoint):
     try:
-        model = load_model(sam_checkpoint, vrp_checkpoint)
+        model = load_model(sam_checkpoint)
         st.sidebar.success("Model loaded successfully!")
     except Exception as e:
         st.sidebar.error(f"Error loading model: {e}")
